@@ -1,0 +1,107 @@
+$primary: #03001c;
+$secondary: #301e67;
+$third: #5b8fb9;
+$sidebar: #5b8fb915;
+$fourth: #b6eada;
+$text-color: #fff;
+
+html {
+  font-size: 10px;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+img {
+  height: 25rem;
+  width: 25rem;
+  border-radius: 50%;
+  scale: 1.2;
+  //   box-shadow: 0 0 32px 0 rgba(31, 38, 135, 0.37);
+}
+section {
+  height: 100vh;
+  width: 100%;
+  background: $primary;
+  overflow: hidden;
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 5rem;
+    width: 100%;
+    padding: 0px 2rem;
+    ul {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style-type: none;
+      li {
+        a {
+          display: block;
+          text-decoration: none;
+          svg {
+            height: 2.5rem;
+            width: 2.5rem;
+            path {
+              fill: $text-color;
+            }
+          }
+        }
+      }
+    }
+  }
+  .container-img {
+    margin-top: 3rem;
+    height: 28rem;
+    width: 100%;
+    display: grid;
+    place-items: center;
+  }
+  .desc {
+    margin: 2rem 0;
+    height: 20rem;
+    width: 100%;
+    background-color: red;
+    .item {
+      height: 5rem;
+      width: 10rem;
+      background-color: blue;
+    }
+  }
+  .sidebar {
+    height: 40rem;
+    width: 5rem;
+    position: fixed;
+    right: 1rem;
+    top: 25%;
+    transform: translateY(-25%);
+    // background: rgba(255, 255, 255, 0.1);
+    background: $sidebar;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    z-index: 99;
+    display: flex;
+    // flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    ul {
+      li {
+        border-radius: 50%;
+        list-style-type: none;
+        margin: 2.5rem 0;
+        cursor: pointer;
+        display: block;
+        img {
+          height: 2.3rem;
+          width: 2.3rem;
+        }
+      }
+    }
+  }
+}
