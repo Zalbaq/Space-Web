@@ -15,11 +15,7 @@ html {
   box-sizing: border-box;
 }
 img {
-  height: 25rem;
-  width: 25rem;
   border-radius: 50%;
-  scale: 1.2;
-  //   box-shadow: 0 0 32px 0 rgba(31, 38, 135, 0.37);
 }
 section {
   height: 100vh;
@@ -55,15 +51,13 @@ section {
     }
   }
   .container-img {
-    margin-top: 3rem;
-    height: 28rem;
+    padding: 2rem;
     width: 100%;
     display: grid;
     place-items: center;
   }
   .desc {
     margin: 5rem 0;
-    height: 20rem;
     width: 100%;
     div {
       background: rgba(255, 255, 255, 0.1);
@@ -77,12 +71,10 @@ section {
   .sidebar {
     height: 100%;
     width: 50%;
-    background-color: red;
     position: absolute;
     right: 0;
     top: 0;
     background: rgba(255, 255, 255, 0.15);
-    // box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
     border-radius: 10px 0;
@@ -91,6 +83,7 @@ section {
       width: 100%;
       padding: 0 2rem;
       svg {
+        cursor: pointer;
         height: $icon-height;
         width: $icon-height;
       }
