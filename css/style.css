@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap");
 html {
   font-size: 10px;
 }
@@ -6,6 +7,7 @@ html {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 img {
@@ -44,11 +46,21 @@ section nav ul li a svg {
 section nav ul li a svg path {
   fill: #e9e9e9;
 }
+section nav ul li #list-menu svg {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+section nav ul li #list-menu svg path {
+  fill: #e9e9e9;
+}
 section .container-img {
   padding: 2rem;
+  height: 40rem;
   width: 100%;
   display: grid;
   place-items: center;
+  background: url(/planets/earth.png) no-repeat center;
+  background-size: contain;
 }
 section .desc {
   margin: 5rem 0;
@@ -62,7 +74,7 @@ section .desc div {
   border-radius: 10px;
   color: #e9e9e9;
 }
-section .sidebar {
+section #sidebar {
   height: 100%;
   width: 50%;
   position: absolute;
@@ -72,38 +84,33 @@ section .sidebar {
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   border-radius: 10px 0;
+  transition: ease-in 0.3s;
 }
-section .sidebar .close-icon {
+section #sidebar #close-sidebar {
   height: 5rem;
   width: 100%;
   padding: 0 2rem;
 }
-section .sidebar .close-icon svg {
+section #sidebar #close-sidebar svg {
   cursor: pointer;
   height: 2.5rem;
   width: 2.5rem;
 }
-section .sidebar .menu ul {
+section #sidebar .menu ul {
   list-style: none;
 }
-section .sidebar .menu ul li {
+section #sidebar .menu ul li {
   height: 0.5rem;
   color: #e9e9e9;
   cursor: pointer;
-}
-section .sidebar .menu ul li a {
-  font-size: 1.5rem;
-  letter-spacing: 2px;
-  text-decoration: none;
-}
-section .sidebar ul li {
   border-radius: 50%;
   list-style-type: none;
   margin: 2.5rem 0;
   cursor: pointer;
   display: block;
 }
-section .sidebar ul li img {
-  height: 2.3rem;
-  width: 2.3rem;
+section #sidebar .menu ul li a {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  text-decoration: none;
 }/*# sourceMappingURL=style.css.map */
