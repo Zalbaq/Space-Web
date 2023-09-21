@@ -32,3 +32,15 @@ async function main() {
 }
 
 main();
+
+let hideSidebar = () => {
+  const sidebar = document.getElementById("sidebar");
+  const closeIcon = document.getElementById("close-sidebar");
+  let widthSidebar = window.getComputedStyle(sidebar).width;
+
+  closeIcon.addEventListener("click", () => {
+    sidebar.style.transform = `translateX(${widthSidebar})`;
+  });
+};
+
+hideSidebar();
