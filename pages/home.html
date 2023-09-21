@@ -2,9 +2,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Space Website</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../dist/output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Space Website</title>
   </head>
   <body>
     <section class="flex flex-col justify-between">
@@ -29,7 +35,7 @@
             </a>
           </li>
           <li>
-            <a href="">
+            <div id="list-menu">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="800px"
@@ -53,13 +59,11 @@
                   />
                 </g>
               </svg>
-            </a>
+            </div>
           </li>
         </ul>
       </nav>
-      <div class="container-img">
-        <img src="../planets/earth.png" alt="" />
-      </div>
+      <div class="container-img"></div>
       <div class="desc px-7 grid grid-rows-6 grid-cols-8 gap-4 basis-1/2">
         <div class="row-span-2 col-span-2">Time-Rotation</div>
         <div class="row-span-2 col-span-2">Gravity</div>
@@ -74,8 +78,8 @@
           </p>
         </div>
       </div>
-      <div class="sidebar flex flex-col items-center">
-        <div class="close-icon flex flex-row-reverse items-center">
+      <div class="flex flex-col items-center" id="sidebar">
+        <div class="flex flex-row-reverse items-center" id="close-sidebar">
           <svg
             width="800px"
             height="800px"
