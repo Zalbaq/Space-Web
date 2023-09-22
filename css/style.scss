@@ -15,113 +15,125 @@ html {
   margin: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
 }
-img {
-  border-radius: 50%;
-}
-section {
-  height: 100vh;
+nav {
+  position: fixed;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5rem;
   width: 100%;
-  background: $primary;
-  overflow: hidden;
-  nav {
+  padding: 0px 2rem;
+  ul {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 5rem;
-    width: 100%;
-    padding: 0px 2rem;
-    ul {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      list-style-type: none;
-      li {
-        a {
-          display: block;
-          text-decoration: none;
-          svg {
-            height: $icon-height;
-            width: $icon-height;
-            path {
-              fill: $text-color;
-            }
-          }
-        }
-        #list-menu{
-          svg {
-            height: $icon-height;
-            width: $icon-height;
-            path {
-              fill: $text-color;
-            }
+    list-style-type: none;
+    li {
+      a {
+        display: block;
+        text-decoration: none;
+        svg {
+          height: $icon-height;
+          width: $icon-height;
+          path {
+            fill: $text-color;
           }
         }
       }
-    }
-  }
-  .container-img {
-    padding: 2rem;
-    height: 40rem;
-    width: 100%;
-    display: grid;
-    place-items: center;
-    background: url(/planets/earth.png) no-repeat center;
-    background-size: contain;
-  }
-  .desc {
-    margin: 5rem 0;
-    width: 100%;
-    div {
-      background: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      backdrop-filter: blur(1px);
-      -webkit-backdrop-filter: blur(1px);
-      border-radius: 10px;
-      color: #e9e9e9;
-    }
-  }
-  #sidebar {
-    height: 100%;
-    width: 50%;
-    position: absolute;
-    right: 0;
-    top: 0;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-    border-radius: 10px 0;
-    transition: ease-in .3s;
-    #close-sidebar {
-      height: 5rem;
-      width: 100%;
-      padding: 0 2rem;
-      svg {
-        cursor: pointer;
-        height: $icon-height;
-        width: $icon-height;
-      }
-    }
-    .menu {
-      ul {
-        list-style: none;
-        li {
-          height: .5rem;
-          color: $text-color;
+      #list-menu{
+        svg {
+          height: $icon-height;
+          width: $icon-height;
           cursor: pointer;
-          border-radius: 50%;
-          list-style-type: none;
-          margin: 2.5rem 0;
-          cursor: pointer;
-          display: block;
-          a {
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            text-decoration: none;
+          path {
+            fill: $text-color;
           }
         }
       }
     }
   }
 }
+main{
+  section {
+    height: 100vh;
+    min-width: 100vw;
+    background: url(../background/bg.png) no-repeat center ;
+    overflow: hidden;
+    position: relative;
+
+    .container-img {
+      padding: 2rem;
+      width: 100vw;
+      display: grid;
+      place-items: center;
+      // background: url(/planets/earth.png) no-repeat center;
+      scale: 0.8;
+      background-size: contain;
+      position: relative;
+    }
+  
+    .desc {
+      margin: 5rem 0;
+      width: 100%;
+      font-size: 1.2rem;
+      div {
+        position: relative;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        color: #e9e9e9;
+        padding: 1rem 2rem;
+        svg, path{
+          height:  calc($icon-height * 1.2);
+          fill: #fff;
+        }
+      }
+    }
+  }
+}
+#sidebar {
+  z-index: 100;
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: 10px 0;
+  transition: ease-in-out .3s;
+  #close-icon {
+    height: 5rem;
+    width: 100%;
+    padding: 0 2rem;
+    svg {
+      cursor: pointer;
+      height: $icon-height;
+      width: $icon-height;
+    }
+  }
+  .menu {
+    ul {
+      list-style: none;
+      li {
+        height: .5rem;
+        color: $text-color;
+        cursor: pointer;
+        border-radius: 50%;
+        list-style-type: none;
+        margin: 2.5rem 0;
+        cursor: pointer;
+        display: block;
+        a {
+          font-size: 1.5rem;
+          letter-spacing: 2px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  }
