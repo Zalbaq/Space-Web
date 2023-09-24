@@ -154,6 +154,7 @@ const icon = {
 };
 
 const planetSrc = {
+  nebula: "../planets/nebula.png",
   mercury: "../planets/mercury.png",
   venus: "../planets/venus.png",
   earth: "../planets/earth.png",
@@ -164,11 +165,40 @@ const planetSrc = {
   neptune: "../planets/neptune.png",
 };
 
-async function getPlanetData(planetName) {
-  const api = `https://api.le-systeme-solaire.net/rest/bodies/${planetName}`;
-  let response = await fetch(api);
-  let data = await response.json();
+const planets = {
+  nebula: {},
+  mercury: {},
+  venus: {},
+  earth: {},
+  mars: {},
+  jupiter: {},
+  saturn: {},
+  uranus: {},
+  neptune: {},
+};
 
+async function getPlanetData(planetName) {
+  let data;
+  const api = `https://api.le-systeme-solaire.net/rest/bodies/${planetName}`;
+  let response = await fetch(api)
+    .then((res) => {
+      if (res.ok) {
+        return res;
+      }
+    })
+    .catch((err) => {
+      planets.nebula = {
+        latinName: "Nebula",
+        englishName: "Nebula",
+        avgTempK: 0,
+        gravity: 0,
+        timeRotation: 0,
+        timeOrbit: 0,
+        mass: 0,
+      };
+    });
+
+  data = response.json();
   return {
     latinName: data.name,
     englishName: data.englishName,
@@ -184,47 +214,20 @@ let sidebarControl = () => {
   const sidebar = document.getElementById("sidebar");
   const closeIcon = document.getElementById("close-icon");
   const listIcon = document.getElementById("list-menu");
-  let widthSidebar = getComputedStyle(sidebar).width;
 
   closeIcon.addEventListener("click", () => {
-    sidebar.style.transform = `translateX(${widthSidebar})`;
+    sidebar.classList.toggle("open-sidebar");
   });
+
   listIcon.addEventListener("click", () => {
-    sidebar.style.transform = `translateX(0)`;
+    sidebar.classList.toggle("open-sidebar");
   });
 };
 
-async function getTime(planetName) {
-  const timeRotation = document.getElementById("time-rotation");
-  planetName = await getPlanetData(planetName);
-
-  timeRotation.innerHTML = `${Math.round(planetName.timeRotation)} Hours`;
-}
-
-async function getGravity(planetName) {
-  const gravity = document.getElementById("gravity");
-  planetName = await getPlanetData(planetName);
-
-  gravity.innerHTML = `${Math.round(planetName.gravity)} m/s`;
-}
-
-async function getMass(planetName) {
-  const mass = document.getElementById("mass");
-  planetName = await getPlanetData(planetName);
-
-  mass.innerHTML = `${planetName.mass.toFixed(2)} x 10^25 kg`;
-}
-
-async function getTemp(planetName) {
-  const temp = document.getElementById("temp");
-  planetName = await getPlanetData(planetName);
-
-  temp.innerHTML = `${planetName.avgTempK} K`;
-}
-
 async function createElement(planetName) {
-  let section = document.getElementById(planetName);
-  let planet = await getPlanetData(planetName);
+  const main = document.querySelector("main");
+  const section = document.createElement("section");
+  planets[planetName] = await getPlanetData(planetName);
 
   section.innerHTML = `
           <img id="img-planet" class="container-img basis-3/4" src="${planetSrc[planetName]}"></img>
@@ -233,25 +236,25 @@ async function createElement(planetName) {
             class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
           >
             ${icon.time}
-            <label id="time-rotation" class="text-center">${planet.timeOrbit}</label>
+            <label id="time-rotation" class="text-center">${planets[planetName].timeOrbit}</label>
           </div>
           <div
             class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
           >
             ${icon.gravity}
-            <label id="gravity" class="text-center">${planet.gravity}</label>
+            <label id="gravity" class="text-center">${planets[planetName].gravity}</label>
           </div>
           <div
             class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
           >
             ${icon.mass}
-            <label id="mass" class="text-center">${planet.mass}</label>
+            <label id="mass" class="text-center">${planets[planetName].mass}</label>
           </div>
           <div
             class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
           >
             ${icon.temp}
-            <label id="temp" class="text-center">${planet.avgTempK}</label>
+            <label id="temp" class="text-center">${planets[planetName].avgTempK}</label>
           </div>
           <div class="row-span-2 col-span-8 text-justify">
             <p>
@@ -262,15 +265,7 @@ async function createElement(planetName) {
             </p>
           </div>
         </div>`;
+  main.appendChild(section);
 }
-
-createElement("mercury")
-.then(createElement("venus"))
-.then(createElement("earth"))
-.then(createElement("mars"))
-.then(createElement("saturn"))
-.then(createElement("jupiter"))
-.then(createElement("uranus"))
-.then(createElement("neptune"))
 
 sidebarControl();
