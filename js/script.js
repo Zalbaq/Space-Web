@@ -268,4 +268,60 @@ async function createElement(planetName) {
   main.appendChild(section);
 }
 
+async function createElementAll() {
+  const main = document.querySelector("main");
+  const section = document.createElement("section");
+
+  for (const planet in planets) {
+    if (planet == "nebula") {
+      continue;
+    } else {
+      createElement(planet);
+    }
+  }
+}
+
+createElementAll().catch(() => {
+  const main = document.querySelector("main");
+  const section = document.createElement("section");
+  section.classList.add("flex", "flex-col", "justify-between");
+
+  section.innerHTML = `
+          <img id="img-planet" class="container-img basis-3/4" src="${planetSrc.nebula}"></img>
+        <div class="desc px-7 grid grid-rows-4 grid-cols-8 gap-8 basis-1/4">
+          <div
+            class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
+          >
+            ${icon.time}
+            <label id="time-rotation" class="text-center">${planets.nebula.timeOrbit}</label>
+          </div>
+          <div
+            class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
+          >
+            ${icon.gravity}
+            <label id="gravity" class="text-center">${planets.nebula.gravity}</label>
+          </div>
+          <div
+            class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
+          >
+            ${icon.mass}
+            <label id="mass" class="text-center">${planets.nebula.mass}</label>
+          </div>
+          <div
+            class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
+          >
+            ${icon.temp}
+            <label id="temp" class="text-center">${planets.nebula.avgTempK}</label>
+          </div>
+          <div class="row-span-2 col-span-8 text-justify">
+            <p>
+              <strong>Bumi</strong> adalah planet ketiga dari Matahari dalam
+              tata surya kita, yang unik karena menjadi satu-satunya tempat yang
+              diketahui memiliki kehidupan. Planet ini memiliki beragam
+              ekosistem dan kondisi geologis yang menakjubkan.
+            </p>
+          </div>
+        </div>`;
+  main.appendChild(section);
+});
 sidebarControl();
