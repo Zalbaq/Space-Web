@@ -57,11 +57,22 @@ nav {
     }
   }
 }
+.home{
+  height: 100vh;
+  width: 100%;
+  background:url(../background/bg.png) no-repeat center ;
+  h1{
+    color: $text-color;
+    background-color: red;
+  }
+}
 main{
+  height: 100vh;
+  width: 100%;
+  background: url(../background/bg.png) no-repeat center ;
   section {
     height: 100vh;
     min-width: 100vw;
-    background: url(../background/bg.png) no-repeat center ;
     overflow: hidden;
     position: relative;
 
@@ -92,18 +103,18 @@ main{
     }
   }
 }
-#sidebar {
-  z-index: 100;
+.sidebar {
   height: 100%;
-  width: 50%;
-  position: absolute;
-  right: 0;
+  width: 20rem;
+  position: fixed;
+  right: -20rem;
   top: 0;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   border-radius: 10px 0;
   transition: ease-in-out .3s;
+  z-index: 100;
   #close-icon {
     height: 5rem;
     width: 100%;
@@ -134,4 +145,7 @@ main{
       }
     }
   }
-  }
+}
+.open-sidebar{
+  right: 0rem;
+}
