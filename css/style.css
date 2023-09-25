@@ -64,6 +64,8 @@ main {
   background: url(../background/bg.png) no-repeat center;
 }
 main section {
+  -webkit-backdrop-filter: blur(0.2rem);
+          backdrop-filter: blur(0.2rem);
   height: 100vh;
   min-width: 100vw;
   overflow: hidden;
@@ -86,7 +88,7 @@ main section .desc {
 main section .desc div {
   position: relative;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 1rem;
+  border-radius: 2rem;
   color: #e9e9e9;
   padding: 1rem 2rem;
 }
