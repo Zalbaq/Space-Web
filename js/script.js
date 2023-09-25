@@ -178,13 +178,15 @@ const planets = {
 };
 
 async function getPlanetData(planetName) {
-  let data;
   const api = `https://api.le-systeme-solaire.net/rest/bodies/${planetName}`;
-  let response = await fetch(api)
-    .then((res) => {
-      if (res.ok) {
-        return res;
+  let data = await fetch(api)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
       }
+    })
+    .then((data) => {
+      return data;
     })
     .catch((err) => {
       planets.nebula = {
@@ -198,7 +200,7 @@ async function getPlanetData(planetName) {
       };
     });
 
-  data = response.json();
+  console.log(data);
   return {
     latinName: data.name,
     englishName: data.englishName,
@@ -235,6 +237,8 @@ async function createElement(planetName) {
   const section = document.createElement("section");
   planets[planetName] = await getPlanetData(planetName);
 
+  section.classList.add("flex", "flex-col", "justify-between");
+  section.id = planetName;
   section.innerHTML = `
           <img id="img-planet" class="container-img basis-3/4" src="${planetSrc[planetName]}"></img>
         <div class="desc px-7 grid grid-rows-4 grid-cols-8 gap-8 basis-1/4">
