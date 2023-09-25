@@ -214,6 +214,7 @@ let sidebarControl = () => {
   const sidebar = document.getElementById("sidebar");
   const closeIcon = document.getElementById("close-icon");
   const listIcon = document.getElementById("list-menu");
+  const link = [...sidebar.querySelectorAll("a")];
 
   closeIcon.addEventListener("click", () => {
     sidebar.classList.toggle("open-sidebar");
@@ -221,6 +222,11 @@ let sidebarControl = () => {
 
   listIcon.addEventListener("click", () => {
     sidebar.classList.toggle("open-sidebar");
+  });
+  link.forEach((item) => {
+    item.addEventListener("click", () => {
+      sidebar.classList.toggle("open-sidebar");
+    });
   });
 };
 
@@ -269,9 +275,6 @@ async function createElement(planetName) {
 }
 
 async function createElementAll() {
-  const main = document.querySelector("main");
-  const section = document.createElement("section");
-
   for (const planet in planets) {
     if (planet == "nebula") {
       continue;
