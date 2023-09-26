@@ -176,11 +176,12 @@ const planets = {
   uranus: {},
   neptune: {},
 };
-
+let isLoading = true;
 async function getPlanetData(planetName) {
   const api = `https://api.le-systeme-solaire.net/rest/bodies/${planetName}`;
   let data = await fetch(api)
     .then((response) => {
+      isLoading = false;
       if (response.ok) {
         return response.json();
       }
@@ -200,7 +201,6 @@ async function getPlanetData(planetName) {
       };
     });
 
-  console.log(data);
   return {
     latinName: data.name,
     englishName: data.englishName,
@@ -237,36 +237,57 @@ async function createElement(planetName) {
   const section = document.createElement("section");
   planets[planetName] = await getPlanetData(planetName);
 
-  section.classList.add("flex", "flex-col", "justify-between");
+  section.classList.add(
+    "grid",
+    "xsm:grid-rows-5",
+    "xsm:grid-cols-2",
+    "sm:grid-rows-5",
+    "sm:grid-cols-2",
+    "md:grid-rows-5",
+    "md:grid-cols-2",
+    "lg:grid-rows-2",
+    "lg:grid-cols-6",
+    "place-items-center"
+  );
   section.id = planetName;
   section.innerHTML = `
-          <img id="img-planet" class="container-img basis-3/4" src="${planetSrc[planetName]}"></img>
-        <div class="desc px-7 grid grid-rows-4 grid-cols-8 gap-8 basis-1/4">
+          <img id="img-planet" class="container-img xsm:row-span-3 xsm:col-span-2 sm:row-span-3 sm:col-span-2 md:row-span-3 md:col-span-2 lg:row-span-2 lg:col-span-3 xsm:max-h-[55rem] sm:max-h-[55rem] md:max-h-[55rem] lg:max-h-[60rem]" src="${
+            planetSrc[planetName]
+          }"></img>
+        <div class="desc px-7 xsm:row-span-2 xsm:col-span-2 sm:row-span-2 sm:col-span-2 md:row-span-2 md:col-span-2 lg:row-span-2 lg:col-span-3 grid xsm:grid-rows-4 xsm:grid-cols-8 sm:grid-rows-4 sm:grid-cols-8 md:grid-rows-4 md:grid-cols-8 lg:grid-rows-8 lg:gird-cols-4 gap-8 basis-1/4">
           <div
-            class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
+            class="xsm:row-span-2 xsm:col-span-2 sm:row-span-2 sm:col-span-2 md:row-span-2 md:col-span-2 lg:row-span-2 lg:col-span-2 flex flex-col items-center justify-between gap-4"
           >
             ${icon.time}
-            <label id="time-rotation" class="text-center">${planets[planetName].timeOrbit}</label>
+            <label id="time-rotation" class="text-center">${Math.round(
+              planets[planetName].timeOrbit
+            )} Days</label>
           </div>
           <div
-            class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
+            class="xsm:row-span-2 xsm:col-span-2 sm:row-span-2 sm:col-span-2 md:row-span-2 md:col-span-2 lg:row-span-2 lg:col-span-2 flex flex-col items-center justify-between gap-4"
           >
             ${icon.gravity}
-            <label id="gravity" class="text-center">${planets[planetName].gravity}</label>
+            <label id="gravity" class="text-center">${
+              planets[planetName].gravity
+            } m/s</label>
           </div>
           <div
-            class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
+            class="xsm:row-span-2 xsm:col-span-2 sm:row-span-2 sm:col-span-2 md:row-span-2 md:col-span-2 lg:row-span-2 lg:col-span-2 flex flex-col items-center justify-between gap-4"
           >
             ${icon.mass}
-            <label id="mass" class="text-center">${planets[planetName].mass}</label>
+            <label id="mass" class="text-center">${planets[
+              planetName
+            ].mass.toFixed(2)}</label>
           </div>
           <div
-            class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
+            class="xsm:row-span-2 xsm:col-span-2 sm:row-span-2 sm:col-span-2 md:row-span-2 md:col-span-2 lg:row-span-2 lg:col-span-2 flex flex-col items-center justify-between gap-4"
           >
             ${icon.temp}
-            <label id="temp" class="text-center">${planets[planetName].avgTempK}</label>
+            <label id="temp" class="text-center">${
+              planets[planetName].avgTempK
+            } K</label>
           </div>
-          <div class="row-span-2 col-span-8 text-justify">
+          <div class="xsm:row-span-2 xsm:col-span-8 sm:row-span-2 sm:col-span-8 md:row-span-2 md:col-span-8 lg:row-span-4 lg:col-span-4 text-justify">
             <p>
               <strong>Bumi</strong> adalah planet ketiga dari Matahari dalam
               tata surya kita, yang unik karena menjadi satu-satunya tempat yang
@@ -283,52 +304,10 @@ async function createElementAll() {
     if (planet == "nebula") {
       continue;
     } else {
-      createElement(planet);
+      await createElement(planet);
     }
   }
 }
 
-createElementAll().catch(() => {
-  const main = document.querySelector("main");
-  const section = document.createElement("section");
-  section.classList.add("flex", "flex-col", "justify-between");
-
-  section.innerHTML = `
-          <img id="img-planet" class="container-img basis-3/4" src="${planetSrc.nebula}"></img>
-        <div class="desc px-7 grid grid-rows-4 grid-cols-8 gap-8 basis-1/4">
-          <div
-            class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
-          >
-            ${icon.time}
-            <label id="time-rotation" class="text-center">${planets.nebula.timeOrbit}</label>
-          </div>
-          <div
-            class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
-          >
-            ${icon.gravity}
-            <label id="gravity" class="text-center">${planets.nebula.gravity}</label>
-          </div>
-          <div
-            class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
-          >
-            ${icon.mass}
-            <label id="mass" class="text-center">${planets.nebula.mass}</label>
-          </div>
-          <div
-            class="row-span-2 col-span-2 flex flex-col items-center justify-between gap-4"
-          >
-            ${icon.temp}
-            <label id="temp" class="text-center">${planets.nebula.avgTempK}</label>
-          </div>
-          <div class="row-span-2 col-span-8 text-justify">
-            <p>
-              <strong>Bumi</strong> adalah planet ketiga dari Matahari dalam
-              tata surya kita, yang unik karena menjadi satu-satunya tempat yang
-              diketahui memiliki kehidupan. Planet ini memiliki beragam
-              ekosistem dan kondisi geologis yang menakjubkan.
-            </p>
-          </div>
-        </div>`;
-  main.appendChild(section);
-});
+createElementAll();
 sidebarControl();
