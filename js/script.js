@@ -247,47 +247,127 @@ async function createElement(planetName) {
     "md:grid-cols-2",
     "lg:grid-rows-2",
     "lg:grid-cols-6",
+    "xl:grid-rows-4",
+    "xl:grid-cols-8",
+    "2xl:grid-rows-4",
+    "2xl:grid-cols-8",
     "place-items-center"
   );
   section.id = planetName;
   section.innerHTML = `
-          <img id="img-planet" class="container-img xsm:row-span-3 xsm:col-span-2 sm:row-span-3 sm:col-span-2 md:row-span-3 md:col-span-2 lg:row-span-2 lg:col-span-3 xsm:max-h-[55rem] sm:max-h-[55rem] md:max-h-[55rem] lg:max-h-[60rem]" src="${
-            planetSrc[planetName]
-          }"></img>
-        <div class="desc px-7 xsm:row-span-2 xsm:col-span-2 sm:row-span-2 sm:col-span-2 md:row-span-2 md:col-span-2 lg:row-span-2 lg:col-span-3 grid xsm:grid-rows-4 xsm:grid-cols-8 sm:grid-rows-4 sm:grid-cols-8 md:grid-rows-4 md:grid-cols-8 lg:grid-rows-8 lg:gird-cols-4 gap-8 basis-1/4">
+          <img id="img-planet" class="container-img 
+          xsm:row-span-3 xsm:col-span-2 
+          sm:row-span-3 sm:col-span-2 
+          md:row-span-3 md:col-span-2 
+          lg:row-span-2 lg:col-span-3 
+          xl:row-span-4 xl:col-span-5
+          2xl:row-span-4 2xl:col-span-5
+          xsm:max-h-[55rem] 
+          sm:max-h-[55rem] 
+          md:max-h-[55rem] 
+          lg:max-h-[60rem]
+          xl:max-h-[65rem]
+          2xl:max-h-[70rem]"
+          src="${planetSrc[planetName]}"></img>
+        <div class="desc px-7 
+        xsm:row-span-2 xsm:col-span-2 
+        sm:row-span-2 sm:col-span-2 
+        md:row-span-2 md:col-span-2 
+        lg:row-span-2 lg:col-span-3 
+        xl:row-span-4 xl:col-span-3  
+        2xl:row-span-4 2xl:col-span-3  
+        grid 
+        xsm:grid-rows-4 xsm:grid-cols-8 
+        sm:grid-rows-4 sm:grid-cols-8 
+        md:grid-rows-4 md:grid-cols-8 
+        lg:grid-rows-8 lg:gird-cols-4 
+        xl:grid-rows-8 xl:gird-cols-4 
+        2xl:grid-rows-8 2xl:gird-cols-4 
+        gap-8 basis-1/4">
           <div
-            class="xsm:row-span-2 xsm:col-span-2 sm:row-span-2 sm:col-span-2 md:row-span-2 md:col-span-2 lg:row-span-2 lg:col-span-2 flex flex-col items-center justify-between gap-4"
+            class="
+            xsm:row-span-2 xsm:col-span-2 
+            sm:row-span-2 sm:col-span-2 
+            md:row-span-2 md:col-span-2 
+            lg:row-span-2 lg:col-span-2 
+            xl:row-span-2 xl:col-span-2 
+            2xl:row-span-2 2xl:col-span-2 
+            flex 
+            flex-col 
+            items-center 
+            justify-between 
+            gap-4"
           >
             ${icon.time}
             <label id="time-rotation" class="text-center">${Math.round(
               planets[planetName].timeOrbit
-            )} Days</label>
+            )} <br>Days</label>
           </div>
           <div
-            class="xsm:row-span-2 xsm:col-span-2 sm:row-span-2 sm:col-span-2 md:row-span-2 md:col-span-2 lg:row-span-2 lg:col-span-2 flex flex-col items-center justify-between gap-4"
+            class="
+            xsm:row-span-2 xsm:col-span-2 
+            sm:row-span-2 sm:col-span-2 
+            md:row-span-2 md:col-span-2 
+            lg:row-span-2 lg:col-span-2 
+            xl:row-span-2 xl:col-span-2 
+            2xl:row-span-2 2xl:col-span-2 
+            flex 
+            flex-col 
+            items-center 
+            justify-between 
+            gap-4"
           >
             ${icon.gravity}
             <label id="gravity" class="text-center">${
               planets[planetName].gravity
-            } m/s</label>
+            } <br>m/s</label>
           </div>
           <div
-            class="xsm:row-span-2 xsm:col-span-2 sm:row-span-2 sm:col-span-2 md:row-span-2 md:col-span-2 lg:row-span-2 lg:col-span-2 flex flex-col items-center justify-between gap-4"
+            class="
+            xsm:row-span-2 xsm:col-span-2 
+            sm:row-span-2 sm:col-span-2 
+            md:row-span-2 md:col-span-2 md:row-start-3 
+            lg:row-span-2 lg:col-span-2 
+            xl:row-span-2 xl:col-span-2 
+            2xl:row-span-2 2xl:col-span-2 
+            flex 
+            flex-col 
+            items-center 
+            justify-between 
+            gap-4"
           >
             ${icon.mass}
             <label id="mass" class="text-center">${planets[
               planetName
-            ].mass.toFixed(2)}</label>
+            ].mass.toFixed(2)}<br></label>
           </div>
           <div
-            class="xsm:row-span-2 xsm:col-span-2 sm:row-span-2 sm:col-span-2 md:row-span-2 md:col-span-2 lg:row-span-2 lg:col-span-2 flex flex-col items-center justify-between gap-4"
+            class="xsm:
+            row-span-2 xsm:col-span-2 
+            sm:row-span-2 sm:col-span-2 
+            md:row-span-2 md:col-span-2 md:row-start-3 
+            lg:row-span-2 lg:col-span-2 
+            xl:row-span-2 xl:col-span-2 
+            2xl:row-span-2 2xl:col-span-2 
+            flex 
+            flex-col 
+            items-center 
+            justify-between 
+            gap-4"
           >
             ${icon.temp}
             <label id="temp" class="text-center">${
               planets[planetName].avgTempK
-            } K</label>
+            } <br>Kelvin</label>
           </div>
-          <div class="xsm:row-span-2 xsm:col-span-8 sm:row-span-2 sm:col-span-8 md:row-span-2 md:col-span-8 lg:row-span-4 lg:col-span-4 text-justify">
+          <div class="
+          xsm:row-span-2 xsm:col-span-8 
+          sm:row-span-2 sm:col-span-8 
+          md:row-span-4 md:col-span-4 md:col-start-5 
+          lg:row-span-4 lg:col-span-4 
+          xl:row-span-4 xl:col-span-4 
+          2xl:row-span-4 2xl:col-span-4 
+          text-justify">
             <p>
               <strong>Bumi</strong> adalah planet ketiga dari Matahari dalam
               tata surya kita, yang unik karena menjadi satu-satunya tempat yang
