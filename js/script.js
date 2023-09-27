@@ -379,6 +379,15 @@ async function createElement(planetName) {
   main.appendChild(section);
 }
 
+let getStarted = () => {
+  const getStarted = document.getElementById("get-started");
+  getStarted.addEventListener("click", () => {
+    document.location.href = "#mercury";
+  });
+};
+
+getStarted();
+
 async function createElementAll() {
   for (const planet in planets) {
     if (planet == "nebula") {
