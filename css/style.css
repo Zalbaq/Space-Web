@@ -79,6 +79,8 @@ nav ul li #list-menu svg path {
 }
 #home button:hover {
   box-shadow: 0 0 2rem 0 #ffffff;
+  background-color: #ffffff;
+  color: #4d4d4d;
 }
 
 main {
@@ -160,12 +162,25 @@ main section .desc div p, main section .desc div strong {
   list-style-type: none;
   margin: 2.5rem 0;
   cursor: pointer;
-  display: block;
+  position: relative;
 }
 .sidebar .menu ul li a {
   font-size: 2rem;
   letter-spacing: 2px;
   text-decoration: none;
+}
+.sidebar .menu ul li a::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0.3rem;
+  background: #e9e9e9;
+  transition: ease-in-out 0.3s;
+  border-radius: 1.5rem;
+}
+.sidebar .menu ul li a:hover::after {
+  width: 100%;
 }
 
 .open-sidebar {

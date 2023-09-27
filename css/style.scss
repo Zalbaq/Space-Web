@@ -84,6 +84,8 @@ nav {
     transition: ease-in-out .3s;
     &:hover{
       box-shadow: 0 0 2rem 0 $third;
+      background-color: $third;
+      color: #4d4d4d;
     }
   }
 }
@@ -163,11 +165,26 @@ main{
         list-style-type: none;
         margin: 2.5rem 0;
         cursor: pointer;
-        display: block;
+        position: relative;
         a {
           font-size: 2rem;
           letter-spacing: 2px;
           text-decoration: none;
+          &::after{
+            content: " ";
+            display: block;
+            position: absolute;
+            width: 0;
+            height: .3rem;
+            background: $text-color;
+            transition: ease-in-out .3s;
+            border-radius: 1.5rem;
+          }
+          &:hover{
+            &::after{
+              width: 100%;
+            }
+          }
         }
       }
     }
